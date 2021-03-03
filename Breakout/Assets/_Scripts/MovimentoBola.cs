@@ -62,7 +62,6 @@ public class MovimentoBola : MonoBehaviour
         if (col.gameObject.tag == "Tijolo"){
             SoundManager.Play("block");
             direcao = new Vector3(direcao.x, -direcao.y);
-           gm.pontos++;
         }
 
         if (col.gameObject.tag == "LeftSide"){

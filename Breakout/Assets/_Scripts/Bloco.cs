@@ -7,13 +7,26 @@ public class Bloco : MonoBehaviour
 
     private int durabilidade;
     private SpriteRenderer sprite;
+    private bool unbreakable;
+    private GameManager gm;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
 
-        durabilidade = Random.Range(1,4);
+        gm = GameManager.GetInstance();
+
+        unbreakable = false;
+        durabilidade = Random.Range(1,5);
         sprite = gameObject.GetComponent<SpriteRenderer>();
-        if (durabilidade == 3)
+        if (durabilidade == 4){
+            unbreakable = true;
+            sprite.color = Color.black;
+        }
+        
+        else if (durabilidade == 3)
             sprite.color = Color.magenta;
         else if (durabilidade == 2)
             sprite.color = Color.yellow;
@@ -29,15 +42,19 @@ public class Bloco : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        durabilidade--;
-        if (durabilidade == 0) Destroy(gameObject);
+        if (!unbreakable)
+            durabilidade--;
+        
+        if (durabilidade == 0){
+            gm.pontos++;
+            Destroy(gameObject);}
 
         
-        if (durabilidade == 3)
+        else if (durabilidade == 3)
             sprite.color = Color.magenta;
         else if (durabilidade == 2)
             sprite.color = Color.yellow;
-        else
+        else if (durabilidade == 1)
             sprite.color = Color.white;
     }
 }

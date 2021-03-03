@@ -35,10 +35,10 @@ void Update()
    void OnTriggerEnter2D(Collider2D col)
    {
        if (col.gameObject.tag == "LeftWall"){
-           transform.position =  col.transform.position + new Vector3(4,0,0);
+           transform.position =  col.transform.position + new Vector3(5.0f,0,0);
        }
        if (col.gameObject.tag == "RightWall"){
-           transform.position =  col.transform.position + new Vector3(-4,0,0);
+           transform.position =  col.transform.position + new Vector3(-5.0f,0,0);
        }
 
        
